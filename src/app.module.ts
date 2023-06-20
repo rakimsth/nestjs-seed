@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path';
 
 import { TodoModule } from './todo/todo.module';
+import { CaslModule } from './casl/casl.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { TodoModule } from './todo/todo.module';
       database: path.resolve(__dirname, '..', 'db.sqlite'),
     }),
     TodoModule,
+    CaslModule,
   ],
 })
 export class AppModule {}
