@@ -7,9 +7,10 @@ import {
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const logger = new Logger('bootstrap');
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter({ logger: true }), // turn on/off for production
+    new FastifyAdapter({ logger: false }), // turn on/off for production
   );
   const port = process.env.PORT || 3333;
   app.enableCors();
@@ -24,6 +25,6 @@ async function bootstrap() {
     defaultVersion: '1',
   });
   await app.listen(port, '0.0.0.0');
-  Logger.log(`Application running on port ${port}`, 'Main');
+  logger.log(`Application listening on port ${port}`);
 }
 bootstrap();
