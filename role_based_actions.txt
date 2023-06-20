@@ -10,5 +10,5 @@ DELETE /user/id
 
 Access:
 
-- If isAdmin: Create, Read, Update, Delete
+- If isAdmin: Create, Read, Update, Delete if in same organization
 - If not Admin: Read

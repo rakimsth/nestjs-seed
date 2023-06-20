@@ -31,6 +31,9 @@ export class AbilityFactory {
     );
     if (user.isAdmin) {
       can(Action.MANAGE, 'all'); // Admin can do anything
+      cannot(Action.MANAGE, User, { orgId: { $ne: user.orgId } }).because(
+        'You can only manage users in your organization',
+      );
     } else {
       can(Action.READ, 'all');
       cannot(Action.CREATE, User).because('You are not authorized to create');

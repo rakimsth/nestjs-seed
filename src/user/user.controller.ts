@@ -27,7 +27,7 @@ export class UserController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    const user = { id: 1, isAdmin: false }; //req.user (mocked Data)
+    const user = { id: 1, isAdmin: false, orgId: 1 }; //req.user (mocked Data)
     const ability = this.abilityFactory.defineAbilitiesFor(user);
 
     try {
@@ -52,6 +52,7 @@ export class UserController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    // Pull user data from DB before executing the CASL check
     return this.userService.update(+id, updateUserDto);
   }
 
