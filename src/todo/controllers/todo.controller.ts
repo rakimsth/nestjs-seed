@@ -21,14 +21,14 @@ export class TodoController {
   @Version('1')
   @Get()
   public findAll(): Promise<TodoDto[]> {
-    this.logger.verbose('Version 1');
+    this.logger.verbose('V1 >> Find All');
     return this.todoService.findAll();
   }
 
   @Version('2')
   @Get()
   public findAllV2(): Promise<TodoDto[]> {
-    this.logger.verbose('Version 2');
+    this.logger.verbose('V2 >> Find All');
     return this.todoService.findAllV2();
   }
 

@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Todo } from '../../entities';
@@ -7,19 +12,33 @@ import { TodoMapperService } from '../todo-mapper/todo-mapper.service';
 
 @Injectable()
 export class TodoService {
+  private logger = new Logger('TodoService');
   public constructor(
     @InjectRepository(Todo) private readonly todoRepository: Repository<Todo>,
     private readonly todoMapper: TodoMapperService,
   ) {}
 
   public async findAll(): Promise<TodoDto[]> {
-    const todos = await this.todoRepository.find();
-    return todos.map(this.todoMapper.modelToDto);
+    try {
+      const todos = await this.todoRepository.find({});
+      return todos.map(this.todoMapper.modelToDto);
+    } catch (err) {
+      this.logger.error(`Failed to get all tasks `, err.stack);
+      throw new InternalServerErrorException();
+    }
   }
 
   public async findAllV2(): Promise<TodoDto[] | any> {
-    const todos = await this.todoRepository.findAndCount();
-    return todos;
+    try {
+      const todos = await this.todoRepository
+        .createQueryBuilder('todo')
+        .where('post.id= :id', { postId: 1 }) // created issue to test the error log
+        .getOne();
+      return todos;
+    } catch (err) {
+      this.logger.error(`Failed to get all V2 tasks`, err.stack);
+      throw new InternalServerErrorException();
+    }
   }
 
   public async findOne(id: number): Promise<TodoDto> {
