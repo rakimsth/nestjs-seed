@@ -1,15 +1,43 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ForbiddenException,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import {
+  AbilityFactory,
+  Action,
+} from '../ability/ability.factory/ability.factory';
+import { User } from './entities/user.entity';
+import { ForbiddenError } from '@casl/ability';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private abilityFactory: AbilityFactory,
+  ) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+    const user = { id: 1, isAdmin: false }; //req.user (mocked Data)
+    const ability = this.abilityFactory.defineAbilitiesFor(user);
+
+    try {
+      ForbiddenError.from(ability).throwUnlessCan(Action.CREATE, User);
+      return this.userService.create(createUserDto);
+    } catch (err) {
+      if (err instanceof ForbiddenError) {
+        throw new ForbiddenException(err.message);
+      }
+    }
   }
 
   @Get()

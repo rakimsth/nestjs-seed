@@ -5,6 +5,7 @@ import * as path from 'path';
 
 import { TodoModule } from './todo/todo.module';
 import { UserModule } from './user/user.module';
+import { AbilityModule } from './ability/ability.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { UserModule } from './user/user.module';
     }),
     TodoModule,
     UserModule,
+    AbilityModule,
   ],
 })
 export class AppModule {}

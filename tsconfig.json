@@ -18,10 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@AppRoot/*": ["src/*"],
-      "@Common/*": ["src/common/*"],
-      "@Todos/*": ["src/todo/*"],
-      "@Acl/*": ["src/casl/*"]
+      "@Todos/*": ["src/todo/*"]
     }
   }
 }

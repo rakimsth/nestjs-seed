@@ -10,6 +10,7 @@
 - [ ] Enabled Social Logins using Passport
 - [ ] Enable User Authentication
 - [ ] Replace Sqlite db with Prisma
+- [ ] Create global custom exception filter to catch global errors
 
 ## Description
 

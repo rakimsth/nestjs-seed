@@ -1,0 +1,43 @@
+// Main file where we define user rules and permissions
+import { User } from '../../user/entities/user.entity';
+import { Todo } from '@Todos/entities/todo.entity';
+import {
+  AbilityBuilder,
+  createMongoAbility,
+  ExtractSubjectType,
+  InferSubjects,
+  MongoAbility,
+} from '@casl/ability';
+import { Injectable } from '@nestjs/common';
+
+export enum Action {
+  MANAGE = 'manage', // Special action that represents any action(wildcard)
+  CREATE = 'create',
+  READ = 'read',
+  UPDATE = 'update',
+  DELETE = 'delete',
+}
+
+export type Subjects = InferSubjects<typeof User> | typeof Todo | 'all'; // which entities will the rules be applied to
+
+export type AppAbility = MongoAbility<[Action, Subjects]>; // Bind rule of Action with Subjects
+
+@Injectable()
+export class AbilityFactory {
+  defineAbilitiesFor(user: User) {
+    // Define abilities for user
+    const { can, cannot, build } = new AbilityBuilder<AppAbility>(
+      createMongoAbility,
+    );
+    if (user.isAdmin) {
+      can(Action.MANAGE, 'all'); // Admin can do anything
+    } else {
+      can(Action.READ, 'all');
+      cannot(Action.CREATE, User).because('You are not authorized to create');
+    }
+    return build({
+      detectSubjectType: (item) =>
+        item.constructor as ExtractSubjectType<Subjects>,
+    }); // Return rules
+  }
+}
