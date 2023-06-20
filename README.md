@@ -6,11 +6,11 @@
 - [x] Compiler Switched to SWC for faster compilation during development
 - [x] Enabled dotenv support on Approot using @nestjs/config
 - [x] API Versioning(/api/v1 , api/v2)
-- [ ] Enable CASL for RBAC
-- [ ] Enabled Social Logins using Passport
-- [ ] Enable User Authentication
-- [ ] Replace Sqlite db with Prisma
+- [x] Enable CASL for RBAC
 - [ ] Create global custom exception filter to catch global errors
+- [ ] Enable User Authentication
+- [ ] Enabled Social Logins using Passport
+- [ ] Replace Sqlite db with Prisma
 
 ## Description
 
