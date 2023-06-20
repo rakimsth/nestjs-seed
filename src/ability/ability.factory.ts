@@ -1,5 +1,5 @@
 // Main file where we define user rules and permissions
-import { User } from '../../user/entities/user.entity';
+import { User } from '../user/entities/user.entity';
 import { Todo } from '@Todos/entities/todo.entity';
 import {
   AbilityBuilder,
@@ -37,6 +37,7 @@ export class AbilityFactory {
     } else {
       can(Action.READ, 'all');
       cannot(Action.CREATE, User).because('You are not authorized to create');
+      cannot(Action.DELETE, User).because('You are not authorized to delete');
     }
     return build({
       detectSubjectType: (item) =>
