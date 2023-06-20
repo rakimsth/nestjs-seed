@@ -1,0 +1,14 @@
+USER REQUIREMENT
+
+USER CRUD
+
+GET /user
+GET /user/id
+POST /user
+PATCH /user/id
+DELETE /user/id
+
+Access:
+
+- If isAdmin: Create, Read, Update, Delete
+- If not Admin: Read
