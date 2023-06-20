@@ -5,6 +5,7 @@
 - [x] Swagger documentation using @nestjs/swagger with Authorization
 - [x] Compiler Switched to SWC for faster compilation during development
 - [x] Enabled dotenv support on Approot using @nestjs/config
+- [x] API Versioning(/api/v1 , api/v2)
 - [ ] Enable CASL for RBAC
 - [ ] Enabled Social Logins using Passport
 - [ ] Enable User Authentication
