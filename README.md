@@ -7,6 +7,7 @@
 - [x] Enabled dotenv support on Approot using @nestjs/config
 - [x] API Versioning(/api/v1 , api/v2)
 - [x] Enable CASL for RBAC
+- [x] Added Docker Support
 - [ ] Create global custom exception filter to catch global errors
 - [ ] Enable User Authentication
 - [ ] Enabled Social Logins using Passport
