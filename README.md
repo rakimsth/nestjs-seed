@@ -11,7 +11,8 @@
 - [ ] Create global custom exception filter to catch global errors
 - [ ] Enable User Authentication
 - [ ] Enabled Social Logins using Passport
-- [ ] Replace Sqlite db with Prisma
+- [ ] Replace Sqlite db with Prisma/Postgres
+- [x] Linter (tslint + eslint + prettier)
 
 ## Description
 
