@@ -1,27 +1,28 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import * as path from 'path';
-
-import { TodoModule } from './todo/todo.module';
-import { UserModule } from './user/user.module';
-import { AbilityModule } from './ability/ability.module';
-import { APP_GUARD } from '@nestjs/core';
-import { AbilitiesGuard } from './ability/abilities.guard';
+import { BullModule } from '@nestjs/bull';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { MailModule } from './mailer/mailer.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      autoLoadEntities: true,
-      synchronize: true,
-      database: path.resolve(__dirname, '..', 'db.sqlite'),
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        redis: {
+          host: configService.get<string>('REDIS_HOST'),
+          port: +configService.get<number>('REDIS_PORT'),
+        },
+      }),
+      inject: [ConfigService],
     }),
-    TodoModule,
-    UserModule,
-    AbilityModule,
+    AuthModule,
+    PrismaModule,
+    MailModule,
+    UsersModule,
   ],
-  providers: [{ provide: APP_GUARD, useClass: AbilitiesGuard }],
 })
 export class AppModule {}

@@ -3,15 +3,13 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "deleteOutDir": true,
-    "plugins": [
+    "assets": [
       {
-        "name": "@nestjs/swagger",
-        "options": {
-          "classValidatorShim": false,
-          "introspectComments": true
-        }
+        "include": "mailer/templates/**/*",
+        "outDir": "dist/src/",
+        "watchAssets": true
       }
-    ]
+    ],
+    "deleteOutDir": true
   }
 }
