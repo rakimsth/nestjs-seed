@@ -8,7 +8,7 @@
 - [x] Enable RBAC
 - [x] Added Docker Support
 - [x] Create global custom exception filter to catch global errors
-- [x] Use email and otp for user login instead of username and password; use otplip npm package
+- [x] Use email and otp for user login instead of username and password; use otplib npm package
 - [x] Enable User Authentication
 - [x] Enabled Social Logins using Passport (JWT/ Local)
 - [x] Added Mailing SMTP service for Mailing using Nodemailer
