@@ -21,6 +21,11 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Requirements
+- PostgreSQL
+- Redis
+- Nodejs 18 and above
+
 ## Installation
 
 ```bash
