@@ -11,7 +11,7 @@
 - [x] Use email and otp for user login instead of username and password; use otplib npm package
 - [x] Enable User Authentication
 - [x] Enabled Social Logins using Passport (JWT/ Local)
-- [x] Added Mailing SMTP service for Mailing using Nodemailer
+- [x] Added Mailing SMTP service for Mailing using Nodemailer with handlebars for email templates
 - [x] Added Bull for Queuing purpose (currently using for Queuing Emails)
 - [x] Replace Sqlite db with Prisma/Postgres
 - [x] Linter (tslint + eslint + prettier)
