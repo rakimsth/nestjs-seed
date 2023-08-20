@@ -5,8 +5,8 @@ import { Reflector } from '@nestjs/core';
 export class RoleGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
-  matchRoles(roles: string[], userRole: string[]) {
-    return roles.some(role => role.toString() === userRole.toString());
+  matchRoles(roles: string[], userRole: string[]): boolean {
+    return roles.some(role => userRole?.includes(role));
   }
 
   canActivate(context: ExecutionContext): boolean {
