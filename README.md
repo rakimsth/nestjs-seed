@@ -15,13 +15,14 @@
 - [x] Added Bull for Queuing purpose (currently using for Queuing Emails)
 - [x] Replace Sqlite db with Prisma/Postgres
 - [x] Linter (tslint + eslint + prettier)
-- [ ] Integration Testing / Unit Testing using Jest
+- [x] Integration Testing / Unit Testing using Jest [With Test DB Environment]
 
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Requirements
+
 - PostgreSQL
 - Redis
 - Nodejs 18 and above
