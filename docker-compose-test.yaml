@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  test_db:
+    image: postgres:14
+    restart: always
+    container_name: 'test_db'
+    environment:
+      POSTGRES_PASSWORD: '1234'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_DB: 'test'
+    ports:
+      - 5433:5432
+    networks:
+      - test
+  test_redis:
+    container_name: test_redis
+    image: redis:6.2.12 
+    restart: always
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy noeviction
+    ports:
+      - 6378:6379
+    networks:
+      - test
+
+networks:
+  test: 
+    driver: bridge
